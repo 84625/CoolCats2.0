@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Cool Cats 2.0</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="index.html" class="logo-label">Home</a>
+            <div class="navbar-right">
+                <a href="games.html" class="games-label">Games</a>
+                <a href="proxies.html" class="proxies-label">Proxies</a>
+            </div>
+        </div>
+          <div class="title">Cool Cats 2.0</div>
+          <div class="gamebutton">
+            <button class="game-button" onclick="window.location.href='games.html'">Games</button>
+        </div>
+        <div class="cloak">
+            <p class="cloak-button" onclick="openGame()" > Cloak </p>
+            <script>
+    function openGame(){
+    let inFrame
+
+try {
+    inFrame = window !== top
+} catch (e) {
+    inFrame = true
+}
+
+if (!inFrame && !navigator.userAgent.includes("Firefox")) {
+    const popup = open("about:blank", "_blank")
+    if (!popup || popup.closed) {
+        alert("Enable popups and redirects to cloak")
+    } else {
+        const doc = popup.document
+        const iframe = doc.createElement("iframe")
+        const style = iframe.style
+        const link = doc.createElement("link")
+
+        const name = localStorage.getItem("name") || "My Drive - Google Drive";
+        const icon = localStorage.getItem("icon") || "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png";
+        
+        doc.title = name;
+        link.rel = "icon";
+        link.href = icon;
+        
+        iframe.src = location.href
+        style.position = "fixed"
+        style.top = style.bottom = style.left = style.right = 0
+        style.border = style.outline = "none"
+        style.width = style.height = "100%"
+
+        doc.head.appendChild(link);
+        doc.body.appendChild(iframe)
+    }
+}
+}
+            </script>
+        </div>
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </body>
+</html>
